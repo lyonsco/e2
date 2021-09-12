@@ -12,7 +12,7 @@
 
     <h2>Mechanics</h2>
     <ul>
-        <li>...</li>
+        <li>TBD...</li>
     </ul>
 
     <h2>Results</h2>
