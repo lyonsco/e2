@@ -15,12 +15,24 @@ if ($player1Guess == $targetNumber){
     $winner = "Player 2 Wins!"; 
 } else {
     $winner = "No Winner :(";
-}
-
-if ($winner == "No Winner :(") {
     $player1Guess2 = array_pop($guesses);
     $player2Guess2 = array_pop($guesses);
 }
+
+if ($winner == "Player 1 Wins!" or $winner == "Player 2 Wins!") {
+    $player1Guess2 = "Not Needed";
+    $player1Guess2 = "Not Needed";
+}
+
+if ($player1Guess2 == $targetNumber){
+    $winner2 = "Player 1 Wins!";
+} elseif ($player2Guess2 == $targetNumber) {
+    $winner2 = "Player 2 Wins!"; 
+} else {
+    $winner2 = "No Winner :(";
+    $player1Guess3 = array_pop($guesses);
+}
+
 
 
 

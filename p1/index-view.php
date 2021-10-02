@@ -24,11 +24,16 @@
     </ul>
 
     <h2>Results</h2>
-    <h3><b><?php echo $winner; ?></b></h3>
+    <h3>Round 1:<b><?php echo $winner; ?></b></h3>
     <ul>
         <li>The target number is <b><?php echo $targetNumber; ?></b></li>
         <li>Player 1 first guess: <b><?php echo $player1Guess; ?></b></li>
         <li>Player 2 first guess: <b><?php echo $player2Guess; ?></b></li>
+    </ul>
+    <h3>Round 2:<b><?php echo $winner2; ?></b></h3>
+    <ul>
+        <li>Player 1 second guess: <b><?php echo $player1Guess2; ?></b></li>
+        <li>Player 2 second guess: <b><?php echo $player2Guess2; ?></b></li>
     </ul>
 
 </body>
