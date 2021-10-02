@@ -24,10 +24,11 @@
     </ul>
 
     <h2>Results</h2>
+    <h3><b><?php echo $winner; ?></b></h3>
     <ul>
         <li>The target number is <b><?php echo $targetNumber; ?></b></li>
-        <li>Player 1's first guess is <b><?php echo $player1Guess; ?></b></li>
-        <li>Player 2's first guess is <b><?php echo $player2Guess; ?></b></li>
+        <li>Player 1 first guess: <b><?php echo $player1Guess; ?></b></li>
+        <li>Player 2 first guess: <b><?php echo $player2Guess; ?></b></li>
     </ul>
 
 </body>
