@@ -80,7 +80,7 @@ if ($winner == false) {
     }
 }
 
-#Round 4
+#Round 5
 if ($winner == false) {
     if ($player1Guess5 == $targetNumber) {
         $winner5 = "Player 1 Wins!";
@@ -92,46 +92,5 @@ if ($winner == false) {
         $winner5 = "No Winner :(";
     }
 }
-// $player1Guess1 = array_pop($guesses);
-// $player2Guess1 = [];
-// $player1Guess2 = [];
-
-// if ($player1Guess1 == $targetNumber) {
-//     $winner = 'Player 1 Wins!';
-// } else {
-//     $player2Guess1 = array_pop($guesses);
-// }
-
-// if ($player2Guess1 == $targetNumber) {
-//     $winner = 'Player 2 Wins!';
-// } else {
-//     $player1Guess2 = array_pop($guesses);
-// }
-
-
-
-
-
-// if ($targetNumber === $player1Guess) {
-//     var_dump('Player 1 wins');
-// } else {
-//     $player2Guess = array_pop($guesses);
-// };
-
-
-
-
-// if ($player1Guess == $targetNumber) {
-//     echo $score1;
-// } else {
-//     $player2Guess = array_pop($guesses);
-// };
-
-// if ($player2Guess == $targetNumber) {
-//     $score = "Player 2 Wins!";
-// } else {
-//     $player1Guess = array_pop($guesses);
-// };
-
 
 require 'index-view.php';
