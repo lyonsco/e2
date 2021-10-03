@@ -13,6 +13,6 @@
 
 
 ## Outside resources
-https://www.w3schools.com/html/html_css.asp - used this for adding in-line styling to the view file.
+<https://www.w3schools.com/html/html_css.asp> - used this for adding in-line styling to the view file.
 
 ## Notes for instructor
