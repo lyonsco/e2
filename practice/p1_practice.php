@@ -8,8 +8,8 @@ shuffle($guesses);
 
 $winner = false;
 
-require 'practice-view.php';
 
+require 'practice-view.php';
 
 while ($winner == false) {
     $player1Guess = array_pop($guesses);
