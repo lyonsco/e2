@@ -15,28 +15,19 @@
             <label for='guess'>Guess</label>
             <input type='text' id='guess' name='player'>
         </div>
+        <br>
         <div>
             <button type='submit'>Play</button>
         </div>
     </form>
 
-    <?php if($outcome == 0) { ?>
-    You guessed the number!
 
-    <?php } elseif ($outcome == 1) { ?>
-    Too high!
-    <?php } else { ?>
-    Too low!
-    <?php } ?>
-
-    <h2>Results</h2>
 
     <?php if(isset($results)) { ?>
-
-    <?php } ?>
-
-
-
+    <h2>Results</h2>
+    <?php if($outcome == 0) { ?> You guessed the number!
+    <?php } elseif ($outcome == 1) { ?> Too high! Guess again. <?php } elseif ($outcome == -1) { ?> Too low! Guess
+    again. <?php } elseif ($outcome == 2) { ?> Please enter a guess. <?php } ?> <?php } ?>
 </body>
 
 </html>

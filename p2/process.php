@@ -2,30 +2,36 @@
 
 session_start();
 
-$player = (int)$_POST['player'];
+$player = $_POST['player'];
 $playerGuess = (int)$player;
 
-$targetNumber = rand(1, 10);
+$targetNumber = $_SESSION['targetNumber'];
 
 $winner = false;
+$useNewTarget = false;
+$outcome = 2;
 
-if ($playerGuess == $targetNumber) {
-    $outcome = 0;
-    $winner = true;
-}
-    elseif ($playerGuess > $targetNumber) {
-    $outcome = 1;
-    $winner = false;
-} else {
-    $outcome = -1;
-    $winner = false;
-}
+    if ($playerGuess == '') {
+        $outcome = 2;
+        $winner = false;
+        $useNewTarget = false;
+    } else if ($playerGuess == $targetNumber) {
+        $outcome = 0;
+        $winner = true;
+        $useNewTarget = true;
+    } elseif ($playerGuess > $targetNumber) {
+        $outcome = 1;
+    } elseif ($playerGuess < $targetNumber) {
+        $outcome = -1;
+    }
+
 
 $_SESSION['results'] = [
     'playerGuess' => $playerGuess,
     'targetNumber' => $targetNumber,
     'outcome' => $outcome,
-    'winner' => $winner
+    'winner' => $winner,
+    'useNewTarget' => $useNewTarget
 ];
 
 header('Location: index.php');
