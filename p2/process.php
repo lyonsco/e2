@@ -3,6 +3,8 @@
 session_start();
 
 $player = $_POST['player'];
+
+# Cast the guess input to an integer
 $playerGuess = (int)$player;
 
 $targetNumber = $_SESSION['targetNumber'];
