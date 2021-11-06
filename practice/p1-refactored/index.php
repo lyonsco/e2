@@ -9,7 +9,7 @@ $winner = false;
 $player1Guess = [];
 $player2Guess = [];
 $guessKey = 0;
-$outcome = "no winner";
+$outcome = 0;
 
 // function guessNumber() {
      

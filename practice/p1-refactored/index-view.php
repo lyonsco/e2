@@ -26,10 +26,12 @@
     <h2>Results</h2>
     <h3 style="color:blue;">The target number is <?php echo $targetNumber; ?></h3>
     <h3><b>
-            <?php if($ouctome == 1) { ?>
+            <?php if($outcome == 1) { ?>
             Player 1 Wins!
-            <?php } else { ?>
+            <?php } elseif ($outcome == 2) { ?>
             Player 2 Wins!
+            <?php } else { ?>
+            No winner
             <?php } ?>
         </b>
     </h3>
