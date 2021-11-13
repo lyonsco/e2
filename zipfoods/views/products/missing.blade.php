@@ -1,19 +1,13 @@
-<!doctype html>
-<html lang='en'>
+@extends('templates/master')
 
-<head>
+@section('title')
+    Product Not Found
+@endsection
 
-    <title>Product Not Available</title>
-    <meta charset='utf-8'>
+@section('content')
+    <h2>Product Not Found</h2>
+    <p>Sorry, we were not able to find the product you were looking for.<br>
+        <a href='/products'>Check out our other products</a>
+    </p>
 
-</head>
-
-<body>
-
-    <h2>Product No Longer Available</h2>
-    <p><a href='/products'>Please find our current list of products
-            here</a></p>
-
-</body>
-
-</html>
+@endsection
