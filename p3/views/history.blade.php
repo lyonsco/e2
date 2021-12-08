@@ -1,3 +1,15 @@
-<h1>Game History</h1>
+@extends('templates/master')
 
-<p>{{ $history }}</p>
+@section('title')
+    Round History
+@endsection
+
+@section('content')
+    <h2>Round History</h2>
+    <ul>
+        @foreach ($rounds as $round)
+            <li><a href='/round?id={{ $round['id'] }}'>{{ $round['timestamp'] }}</a></li>
+        @endforeach
+    </ul>
+    <a href='/'>Home</a>
+@endsection

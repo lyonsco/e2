@@ -8,119 +8,81 @@ class AppController extends Controller
      */
     public function index()
     {
-
-$guessSaved = $this->app->old('guessSaved');
-$outcome = $this->app->old('outcome');
-$winner = $this->app->old('winner');
-$useNewTarget = $this->app->old('useNewTarget');
+        $guess = $this->app->old('guess');
+        $targetNumber = $this->app->old('targetNumber');
+        $winner = $this->app->old('winner');
+        $outcome = $this->app->old('outcome');
+        $digitsOffTarget = $this->app->old('digitsOffTarget');
+        
         
         return $this->app->view('index', [
-            'guessSaved' => $guessSaved,
-            'outcome' => $outcome,
+            'guess' => $guess,
+            'targetNumber' => $targetNumber,
             'winner' => $winner,
-            'useNewTarget' => $useNewTarget
+            'outcome' => $outcome,
+            'digitsOffTarget' => $digitsOffTarget
         ]);
+    }
 
-        
+    public function process()
+    {
+        $this->app->validate([
+             'guess' => 'required|digit|maxLength:2'
+       ]);
+
+        $guess = $this->app->input('guess');
+
+        $targetNumber = rand(1,10);
+
+    $winner = false;
+    $outcome = 2;
+
+    if ($guess == '') {
+        $outcome = 2;
+        $winner = false;
+    } else if ($guess == $targetNumber) {
+        $outcome = 0;
+        $winner = true;
+    } elseif ($guess > $targetNumber) {
+        $outcome = 1;
+    } elseif ($guess < $targetNumber) {
+        $outcome = -1;
+    }
+
+    $digitsOffTarget = abs($targetNumber - $guess);
+
+    #Persist round details to the database
+
+    $this->app->db()->insert('rounds', [
+        'guess' => $guess,
+        'targetNumber' => $targetNumber,
+        'winner' => ($winner) ? 1 : 0,
+        'digitsOffTarget' => $digitsOffTarget,
+        'timestamp' => date('Y-m-d H:i:s')
+    ]);
+
+    return $this->app->redirect('/', [
+        'guess' => $guess,
+        'targetNumber' => $targetNumber,
+        'winner' => $winner,
+        'outcome' => $outcome,
+        'digitsOffTarget' => $digitsOffTarget
+    ]);
     }
 
     public function history()
     {
-        return $this->app->view('history', [
-            'history' => 'Game History'
-        ]);
+        $rounds = $this->app->db()->all('rounds');
+
+        return $this->app->view('history', ['rounds' => $rounds]);
     }
 
-
-
-    public function saveGuess()
+    public function round()
     {
+        $id = $this->app->param('id');
 
+        $round = $this->app->db()->findById('rounds', $id);
         
-       $this->app->validate([
-        'guess' => 'required|digit|maxLength:2'
-       ]);
-       
-        $guess = $this->app->input('guess');
-
-
-        $targetNumber = rand(1,10);
-        $winner = false;
-        $useNewTarget = false;
-        $outcome = 2;
-        $results = null;
-        $lastTarget = null;
-
-        // if ($guess == $targetNumber){
-        //     return 'You win';
-        // } else {
-        //     return $this->app->redirect('/' , ['guessSaved' => true]);
-        // }
-        
-        if ($guess == '') {
-                $outcome = 2;
-                $winner = false;
-                $useNewTarget = false;
-                return $this->app->redirect('/' , [
-                    'guessSaved' => true,
-                    'outcome' => 2,
-                    'winner' => false,
-                    'useNewTarget' => false
-                ]);
-            } else if ($guess == $targetNumber) {
-                $outcome = 0;
-                $winner = true;
-                $useNewTarget = true;
-                return $this->app->redirect('/' , [
-                    'guessSaved' => true,
-                    'outcome' => 0,
-                    'winner' => true,
-                    'useNewTarget' => true
-                ]);
-            } elseif ($guess > $targetNumber) {
-                $outcome = 1;
-                return $this->app->redirect('/' , [
-                    'guessSaved' => true,
-                    'outcome' => 1,
-                    'winner' => false,
-                    'useNewTarget' => false
-                ]);
-            } elseif ($guess < $targetNumber) {
-                $outcome = -1;
-                return $this->app->redirect('/' , [
-                    'guessSaved' => true,
-                    'outcome' => -1,
-                    'winner' => false,
-                    'useNewTarget' => false
-                ]);
-            }
-
-
-
-            // $results = $this->app->sessionSet('results', [
-            //     'targetNumber' => $targetNumber,
-            //     'winner' => $winner,
-            //     'useNewTarget' => $useNewTarget,
-            //     'outcome' => $outcome,
-            //     'guess' => $guess,
-            //     'lastTarget' => $this->app->sessionGet('targetNumber')
-            // ]);
-
-            // if ($useNewTarget) {
-            //     $targetNumber = rand(1, 10);
-            // } else {
-            //     $targetNumber = $lastTarget;
-            // }
-
-            //     $results = null;
-// }
-
-
-
-
-            // return $results['targetNumber'];
-       #Persist guess to database...
-
-
+        return $this->app->view('round', ['round' => $round]);
     }
 }

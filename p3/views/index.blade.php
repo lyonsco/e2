@@ -1,33 +1,20 @@
 @extends('templates.master')
 
-@section('title')
-    Project 3
-@endsection
+
 
 @section('content')
 
-    @if ($outcome == 0)
-        <div class='alert alert-success'>Correct! You matched the computer's number!</div>
-    @elseif ($outcome == 1)
-        <div class='error alert alert-danger'>Too high! Guess again.</div>
-    @elseif ($outcome == -1)
-        <div class='error alert alert-danger'>Too low! Guess again.</div>
-    @else
-        <div class='error alert alert-danger'>Please enter a guess</div>
-    @endif
 
-    {{-- <div class="results">
-        <h2>Results</h2>
-        @if ($outcome == 0)
-            <p>You guessed the number!</p>
-        @elseif ($outcome == 1)
-            <p>Too high! Guess again.</p>
-        @elseif ($outcome == -1)
-            <p>Too low! Guess again.</p>
-        @elseif ($outcome == 2)
-            <p>Please enter a guess.</p>
-        @endif
-    </div> --}}
+    {{-- @if ($outcome == 0)
+    <div class='alert alert-success'>Correct! You matched the computer's number!</div>
+@elseif ($outcome == 1)
+    <div class='error alert alert-danger'>Too high! Guess again.</div>
+@elseif ($outcome == -1)
+    <div class='error alert alert-danger'>Too low! Guess again.</div>
+@else
+    <div class='error alert alert-danger'>Please enter a guess</div>
+@endif --}}
+
 
     <div class="instructions">
         <h2>Instructions</h2>
@@ -37,12 +24,14 @@
     </div>
 
     <div class="form">
-        <form method='POST' action='/save-guess'>
+        <form method='POST' action='/process'>
             <label for='guess'>Guess</label>
             <input type='text' id='guess' name='guess' value='{{ $app->old('guess') }}'>
             <button type=' submit'>Play</button>
         </form>
     </div>
+
+    <a href='/history'>Game History</a>
 
     @if ($app->errorsExist())
         <ul class='error alert alert-danger'>
@@ -52,7 +41,20 @@
         </ul>
     @endif
 
-
+    @if ($outcome)
+        <div class="results">
+            The target nummber was {{ $targetNumber }}.
+            @if ($winner)
+                <span class="won">
+                    Congrats, you guessed the number!
+                </span>
+            @else
+                <span class="lost">
+                    Sorry, you didn't guess the number. You were {{ $digitsOffTarget }} digits off. Please play again.
+                </span>
+            @endif
+        </div>
+    @endif
 
     {{-- <div class="results">
         <h2>Results</h2>
@@ -65,6 +67,6 @@
         @elseif ($outcome == 2)
             <p>Please enter a guess.</p>
         @endif
-    </div> --}}
+ </div> --}}
 
 @endsection
