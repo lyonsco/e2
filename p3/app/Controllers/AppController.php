@@ -3,15 +3,12 @@ namespace App\Controllers;
 
 class AppController extends Controller
 {
-    /**
-     * This method is triggered by the route "/"
-     */
+
     public function index()
     {
         $guess = $this->app->old('guess');
         $targetNumber = $this->app->old('targetNumber');
         $winner = $this->app->old('winner');
-        $outcome = $this->app->old('outcome');
         $digitsOffTarget = $this->app->old('digitsOffTarget');
         
         
@@ -19,7 +16,6 @@ class AppController extends Controller
             'guess' => $guess,
             'targetNumber' => $targetNumber,
             'winner' => $winner,
-            'outcome' => $outcome,
             'digitsOffTarget' => $digitsOffTarget
         ]);
     }
@@ -35,23 +31,14 @@ class AppController extends Controller
         $targetNumber = rand(1,10);
 
     $winner = false;
-    $outcome = 2;
 
-    if ($guess == '') {
-        $outcome = 2;
-        $winner = false;
-    } else if ($guess == $targetNumber) {
-        $outcome = 0;
+    if ($guess == $targetNumber) {
         $winner = true;
-    } elseif ($guess > $targetNumber) {
-        $outcome = 1;
-    } elseif ($guess < $targetNumber) {
-        $outcome = -1;
-    }
+    } else {
+        $winner = false;
+    } 
 
     $digitsOffTarget = abs($targetNumber - $guess);
-
-    #Persist round details to the database
 
     $this->app->db()->insert('rounds', [
         'guess' => $guess,
@@ -65,7 +52,6 @@ class AppController extends Controller
         'guess' => $guess,
         'targetNumber' => $targetNumber,
         'winner' => $winner,
-        'outcome' => $outcome,
         'digitsOffTarget' => $digitsOffTarget
     ]);
     }

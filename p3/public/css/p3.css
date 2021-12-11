@@ -6,13 +6,10 @@
 }
 
 html {
-    /* background-color: #D3DCF2; */
     font-family: 'Raleway', sans-serif;
     margin: auto;
     text-align: center;
 }
-
-
 
 main {
     max-width: 1000px;
@@ -50,14 +47,22 @@ button {
     margin-left: 5px;
 }
 
-.results {
+.won {
     padding: 2px 10px;
-    width: 30%;
-    margin: auto;
-    /* background-color: #7690CF;
-    color: white; */
+    color: #000000;
+    background-color:#66cc00;
+}
+
+.lost {
+    padding: 2px 10px;
+    color: #000000;
+    background-color:#ff9999;
 }
 
 .results p {
     font-size: 20px;
+}
+
+ul {
+    list-style-type: none;
 }

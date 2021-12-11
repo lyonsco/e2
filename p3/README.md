@@ -14,9 +14,6 @@ n/a
 
 ## Codeception testing output
 ```
-Time: 00:00.200, Memory: 12.00 MB
-
-OK (3 tests, 6 assertions)
 root@hes:/var/www/e2/p3# php vendor/bin/codecept run acceptance --steps
 Codeception PHP Testing Framework v4.1.22
 Powered by PHPUnit 9.5.10 by Sebastian Bergmann and contributors.
@@ -31,7 +28,7 @@ Scenario --
  I click "[test=submit-button]"
  I see element "[test=results-div]"
  I grab text from "[test=target-output]"
- The target number was: 7
+ The target number was: 1
  I see element "[test=lost-output]"
  PASSED 
 
@@ -51,16 +48,16 @@ Test: tests/acceptance/P3Cest.php:showHistoryAndRoundDetails
 Scenario --
  I am on page "/history"
  I grab multiple "[test=round-link]"
- I assert greater than or equal 10,29
+ I assert greater than or equal 10,58
  I grab text from "[test=round-link]"
- I click "2021-12-11 09:40:30"
- I see "2021-12-11 09:40:30"
+ I click "2021-12-11 10:30:46"
+ I see "2021-12-11 10:30:46"
  PASSED 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 
-Time: 00:00.255, Memory: 12.00 MB
+Time: 00:00.522, Memory: 12.00 MB
 
 OK (3 tests, 6 assertions)
 ```
